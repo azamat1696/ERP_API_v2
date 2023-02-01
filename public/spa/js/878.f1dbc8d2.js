@@ -1,0 +1,1 @@
+"use strict";(globalThis["webpackChunkrentacarpanel"]=globalThis["webpackChunkrentacarpanel"]||[]).push([[878],{9878:(a,n,e)=>{e.r(n),e.d(n,{default:()=>s});var r=e(3673);function l(a,n,e,l,t,c){return(0,r.wg)(),(0,r.iD)("p",null,"Genel Ayarlar")}const t={name:"Index"};var c=e(4260);const u=(0,c.Z)(t,[["render",l]]),s=u}}]);
