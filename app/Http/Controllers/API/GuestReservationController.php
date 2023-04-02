@@ -42,36 +42,9 @@ class GuestReservationController extends Controller
         try {
 
             $reservation = Reservation::create($reservationDetail);
-            $customer = Customer::find($reservation->customers_id);
-            $carsDetail = DB::table('cars_v')->where('id',$reservation->cars_id)->first();
-
-            // Fatura oluşturulmalı
-            // Makbuz kesilmeli
-            $invoice = $this->invoice(
-                $reservation->id,
-                $reservation->cars_id,
-                $reservation->TotalPrice, // TotalRentPrice
-                $reservation->CurrencySymbol,
-                $reservation->CurrencyType
-            );
-
-            $invoiceCreated =  Invoice::create($invoice);
-
-            $receipt = $this->receipt(
-                $invoiceCreated->id,
-                $invoiceCreated->InvoiceNo,
-                $reservation->id,
-                $invoiceCreated->UnitTotal,
-                $reservation->customers_id,
-                $reservation->CurrencySymbol,
-                $reservation->CurrencyType
-            );
-            ReceiptCollection::create($receipt);
             $reservationViewDetail = DB::table('current_reservations_v')
                 ->where('id',$reservation->id)
                 ->first();
-                
-           Mail::to($customer->Email)->send(new ReservationDetailToCustomer($reservationViewDetail,null,$carsDetail));
 
             return response()->json([
                 "status" => true,

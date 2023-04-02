@@ -26,7 +26,6 @@ class transactionTestController extends Controller
 	public function payFailed($orderNo) {
 	  $transactions = transactionTest::where('transactionNo','=',$orderNo)->firstOrFail();
 	  $transactions->delete();
-		
 	}
 	
 	public function paySuccess($orderNo) {
